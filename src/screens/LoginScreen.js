@@ -23,7 +23,9 @@ export const LoginScreen = ({ navigation }) => {
     if (result.success) {
       // Navigate based on role
       const { roles } = result.user;
-      if (roles.includes('patient')) {
+      if (roles.includes('admin')) {
+        navigation.replace('AdminDashboard');
+      } else if (roles.includes('patient')) {
         navigation.replace('PatientDashboard');
       } else if (roles.includes('caretaker')) {
         navigation.replace('CaretakerDashboard');
@@ -78,6 +80,7 @@ export const LoginScreen = ({ navigation }) => {
               <Text style={styles.demoText}>Patient: patient@test.com / 123456</Text>
               <Text style={styles.demoText}>Caretaker: caretaker@test.com / 123456</Text>
               <Text style={styles.demoText}>Both: both@test.com / 123456</Text>
+              <Text style={styles.demoText}>Admin: admin@test.com / 123456</Text>
             </View>
           </View>
         </View>
@@ -142,4 +145,5 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 });
+
 

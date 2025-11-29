@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { LoginScreen } from '../screens/LoginScreen';
 import { PatientDashboard } from '../screens/PatientDashboard';
 import { CaretakerDashboard } from '../screens/CaretakerDashboard';
+import { AdminDashboard } from '../screens/AdminDashboard';
 import { MedicineListScreen } from '../screens/MedicineListScreen';
 import { ChecklistScreen } from '../screens/ChecklistScreen';
 import { AlarmsScreen } from '../screens/AlarmsScreen';
@@ -21,6 +22,7 @@ export const AppNavigator = () => {
 
   const isPatient = user?.roles?.includes('patient');
   const isCaretaker = user?.roles?.includes('caretaker');
+  const isAdmin = user?.roles?.includes('admin');
 
   return (
     <NavigationContainer>
@@ -32,6 +34,16 @@ export const AppNavigator = () => {
       >
         {!user ? (
           <Stack.Screen name="Login" component={LoginScreen} />
+        ) : isAdmin ? (
+          <>
+            <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
+            <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+            <Stack.Screen name="CaretakerDashboard" component={CaretakerDashboard} />
+            <Stack.Screen name="MedicineList" component={MedicineListScreen} />
+            <Stack.Screen name="Checklist" component={ChecklistScreen} />
+            <Stack.Screen name="Alarms" component={AlarmsScreen} />
+            <Stack.Screen name="History" component={HistoryScreen} />
+          </>
         ) : (
           <>
             {isPatient && (

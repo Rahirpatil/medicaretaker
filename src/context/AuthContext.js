@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     { email: 'patient@test.com', password: '123456', roles: ['patient'] },
     { email: 'caretaker@test.com', password: '123456', roles: ['caretaker'] },
     { email: 'both@test.com', password: '123456', roles: ['patient', 'caretaker'] },
+    { email: 'admin@test.com', password: '123456', roles: ['admin'] },
   ];
 
   const login = async (email, password) => {
@@ -73,4 +74,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 
